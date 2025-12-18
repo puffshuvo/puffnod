@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUFFNOD</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <canvas id="hexCanvas"></canvas>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <a href="#home"><img src="puffnodep-01.png" alt="Company Logo" id="navLogo"></a>
+        </div>
+        <button class="menu-btn" id="menuBtn">
+            <div class="menu-dots">
+                <span class="dot"></span>
+                <span class="dot1"></span>
+                <span class="dot2"></span>
+            </div>
+        </button>
+    </nav>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+<div class="logo-loader-overlay" id="logoLoader">
+        <div class="animated-logo-container" id="logoContainer">
+            <!-- Hexagon parts will be added here via JavaScript -->
+            <!-- You can replace this with your actual logo segments -->
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M100,20 L170,60" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round"  />
+            </svg>
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M170,60 L170,140" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M170,140 L100,180" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M100,180 L30,140" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M30,140 L30,60" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg width="200" height="200" viewBox="0 0 200 200" class="hex-part">
+                <path d="M30,60 L100,20" stroke="#a0b0c0" stroke-width="25" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg width="700" height="600" viewBox="58 0 1000 500" class="hex-part">
+                <path d="M100,200 L100,15" stroke="#a0b0c0" stroke-width="35" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+        
+        <div class="brand-name" id="brandName">PUFFNOD</div>
+        
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="main-content" id="mainContent">
+        <section class="hero">
+            <div class="bg-animation">
+                <div class="gradient-orb orb1"></div>
+                <div class="gradient-orb orb2"></div>
+                <div class="gradient-orb orb3"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Crafting Digital Experiences</h1>
+                <p style="color: #b8b8b8; font-size: 1.2rem; margin-bottom: 2rem;">
+                    Your content starts here after the logo animation completes
+                </p>
+            </div>
+        </section>
+    </div>
+
+        <div class="scroll-indicator"></div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="comparison-section">
+        <div class="main-heading">
+            <h1>Transform Your Brand</h1>
+            <p>See the difference professional UI/UX design makes</p>
+        </div>
+
+        <div class="comparison-container">
+            <div class="before-after">
+                <div class="before">
+                    <header class="before-header">
+                      
+                    </header>
+                    
+                    <main class="before-main">
+                        <div class="before-content-wrapper">
+                            <div class="before-text-section">
+                                <h1>Premium Fashion</h1>
+                                <p>Discover timeless designs crafted with quality and style in mind. Express your unique personality with our curated collection.</p>
+                                <a href="#" class="before-shop-button">Shop Collection</a>
+                            </div>
+                            
+                            <div class="before-tshirt-section">
+                                <div class="before-tshirt-container">
+                                    <div class="before-tshirt"></div>
+                                    <div class="before-product-info">
+                                        <h3>Golden Tee</h3>
+                                        <p>Premium Cotton</p>
+                                        <div class="before-price">$24.99</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+
+                <div class="after" id="after">
+                    <div class="fashion-section">
+                        <header class="header">
+                            <button id="btnHamburger" class="icon-btn hamburger">
+                                <span></span><span></span><span></span>
+                            </button>
+                            <div class="brand">ChooseFashion</div>
+                            <div style="position:relative">
+                                <button id="btnCart" class="icon-btn">
+                                    🛒
+                                    <span class="cart-badge" id="cartCount">3</span>
+                                </button>
+                            </div>
+                        </header>
+
+                        <div id="backdrop" class="backdrop"></div>
+
+                     
+
+                        <aside id="rightDrawer" class="drawer right">
+                            <h2 style="color:#f2e9c9;margin-bottom:20px">Cart</h2>
+                            <p style="color:#ccc" id="cartItems">3 items in your cart...</p>
+                        </aside>
+
+                        <main class="container">
+                            <div class="text-box">
+                                <h1>Choose Your Fashion</h1>
+                                <p>
+                                    Write some text Write some text Write some text Write some text
+                                    Write some text Write some text
+                                </p>
+                            </div>
+                            <div class="tshirt-box">
+                                <div id="tilt" class="tilt">
+                                    <img id="tshirt1" class="tshirt visible float" src="a.png" alt="T-shirt 1">
+                                    <img id="tshirt2" class="tshirt hidden float" src="b.png" alt="T-shirt 2">
+                                    <img id="tshirt3" class="tshirt hidden float" src="c.png" alt="T-shirt 3">
+                                </div>
+                                <div class="dots">
+                                    <div class="dot active" data-index="0"></div>
+                                    <div class="dot" data-index="1"></div>
+                                    <div class="dot" data-index="2"></div>
+                                </div>
+                                <div class="tshirt-details">
+                                    <hr class="divider">
+                                    <h3 class="name"></h3>
+                                    <p class="price"></p>
+                                    <p class="material"></p>
+                                    <button class="select-button">Select Item</button>
+                                </div>
+                                <div class="pointer-line"></div>
+                                <div class="confirmation-message" id="confirmationMessage">Added to Cart!</div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+
+                <div class="slider" id="slider">
+                    <div class="slider-knob">
+                        <img src="puffnodep-01.png" class="slider-logo" alt="Logo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="labels">
+                <div class="label average">Puffnode Design</div>
+                <div class="label advanced">Your AI Design</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>
+                    At ChooseFashion, we believe in the power of style to transform lives. Our mission is to create high-quality, sustainable fashion that empowers you to express your unique identity. With a focus on craftsmanship and innovation, we curate collections that blend timeless elegance with modern trends.
+                </p>
+                <p>
+                    Founded by passionate designers, our brand is dedicated to making fashion accessible and inspiring. Join us on this journey to redefine style, one outfit at a time.
+                </p>
+            </div>
+            <div class="about-logo"></div>
+        </div>
+    </section>
+<section class="projects-section text-light" id="projectsSection">
+       
+        
+        <div class="projects-container">
+            <h2 class="section-title">Our Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="project-item" data-index="0">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800" alt="Modern Architecture" class="project-image">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Brand Name</h3>
+                    <p class="project-description">
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text
+                    </p>
+                    <a href="https://archimartbd.com/" class="project-link">
+                        <span>Learn More</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item" data-index="1">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="Interior Design" class="project-image">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Brand Name</h3>
+                    <p class="project-description">
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text
+                    </p>
+                    <a href="#" class="project-link">
+                        <span>Learn More</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item" data-index="2">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800" alt="Urban Space" class="project-image">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Brand Name</h3>
+                    <p class="project-description">
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text
+                    </p>
+                    <a href="#" class="project-link">
+                        <span>Learn More</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-item" data-index="3">
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800" alt="Landscape Design" class="project-image">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Brand Name</h3>
+                    <p class="project-description">
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text Write some text Write some text Write some text 
+                        Write some text Write some text
+                    </p>
+                    <a href="#" class="project-link">
+                        <span>Learn More</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partner-section">
+        <div class="partner-container">
+            <div class="partner-logos">
+                <div class="partner-logo-card">
+                    <img src="Kehem.png" alt="TechTrend Innovations Logo">
+                    <a href="https://example.com/techtrend" target="_blank" class="preview-link">
+                        <img src="techtrend-preview.png" alt="TechTrend Website Preview" class="preview-image">
+                        <div class="frame-top"></div>
+                        <div class="frame-bottom"></div>
+                        <div class="frame-left"></div>
+                        <div class="frame-right"></div>
+                        <span class="view-text">Visit Website</span>
+                    </a>
+                </div>
+            </div>
+            <div class="partner-text">
+                <h2>Our Partner</h2>
+                <p>
+                    We collaborate with TechTrend Innovations to deliver a robust and scalable platform. Their cutting-edge technology ensures seamless performance and reliability for our users.
+                </p>
+                <div class="partner-list">
+                    <div class="partner-item">
+                        <h3>TechTrend Innovations</h3>
+                        <p>Providing cloud infrastructure and advanced APIs for unmatched scalability and seamless connectivity.</p>
+                        <a href="https://example.com/techtrend" target="_blank">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-down" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script src="toggle.js"> </script>
+</body>
+</html> 
