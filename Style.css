@@ -1897,3 +1897,250 @@
         .projects-section {
             transition: color 1.5s ease;
         }
+
+
+
+
+        /* ============ PUFFNOD FOOTER STYLES ============ */
+
+#puffnod-footer-section {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background:#ffffff;
+  color:#111;
+  padding:1rem 1vw 1rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.pfn-footer-inner {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  grid-template-areas:
+    "left right"
+    "center center";
+  align-items:start;
+  min-height:60vh;
+}
+
+/* Left block */
+.pfn-footer-column {
+  font-size:0.95rem;
+  letter-spacing:0.12em;
+  text-transform:none;
+}
+
+.pfn-left {
+  grid-area:left;
+}
+
+.pfn-right {
+  grid-area:right;
+  text-align:left;
+}
+
+.pfn-menu-label a {
+  margin-bottom:0.75rem;
+   text-decoration: none;
+   color: #000000;
+ 
+}
+
+.pfn-ghost-link {
+  position:relative;
+  border:none;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  font-size:0.95rem;
+  letter-spacing:0.16em;
+  text-transform:none;
+}
+
+.pfn-social-phone:hover {
+  background:#10b981; /* teal / call color */
+  box-shadow:0 6px 14px rgba(16,185,129,0.45);
+}
+
+.pfn-arrow {
+  transition:transform 0.35s cubic-bezier(0.19,1,0.22,1);
+}
+
+.pfn-underline {
+  position:absolute;
+  left:0;
+  bottom:-0.25rem;
+  width:0;
+  height:1px;
+  background:#111;
+  transition:width 0.4s cubic-bezier(0.19,1,0.22,1);
+}
+
+.pfn-ghost-link:hover .pfn-arrow {
+  transform:translateX(6px);
+}
+
+.pfn-ghost-link:hover .pfn-underline {
+  width:100%;
+}
+
+.pfn-contact-text {
+  max-width:23rem;
+  line-height:1.6;
+  letter-spacing:0.08em;
+  font-size:0.85rem;
+}
+
+/* Center block */
+.pfn-footer-center {
+  grid-area:center;
+  margin-top:4rem;
+  text-align:center;
+  position:relative;
+}
+
+.pfn-socials {
+  position:absolute;
+  left:0;
+  bottom:3.5rem;
+  display:flex;
+  gap:0.75rem;
+  padding-left:0.5rem;
+}
+
+.pfn-social-btn {
+  width:32px;
+  height:32px;
+  border-radius:999px;
+  border:1.5px solid #111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  text-decoration:none;
+  overflow:hidden;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.pfn-social-icon {
+  font-size:0.9rem;
+  font-weight:600;
+  letter-spacing:0.06em;
+  color:#111;
+  transition:color 0.25s ease, transform 0.25s ease;
+}
+
+.pfn-social-fb:hover {
+  background:#1877f2;
+  box-shadow:0 6px 14px rgba(24,119,242,0.4);
+}
+
+.pfn-social-mail:hover {
+  background:#ea4335;
+  box-shadow:0 6px 14px rgba(234,67,53,0.4);
+}
+
+.pfn-social-btn:hover {
+  transform:translateY(-2px) scale(1.05);
+}
+
+.pfn-social-btn:hover .pfn-social-icon {
+  color:#fff;
+  transform:translateY(-1px);
+}
+
+@media (max-width:900px) {
+  .pfn-socials {
+    position:static;
+    justify-content:flex-start;
+    margin-top:1.5rem;
+    margin-bottom:1rem;
+  }
+}
+
+/* Logo row */
+.pfn-logo-row {
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:0.15em;
+  margin-top:2rem;
+}
+
+.pfn-logo-text {
+  font-size:8vw;
+  font-weight:300;
+  letter-spacing:0.1em;
+}
+
+.pfn-logo-P {
+  margin-left:1.5rem;
+}
+
+.pfn-logo-O {
+  width:10vw;
+  max-width:160px;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:visible;
+}
+
+.pfn-logo-O img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  pointer-events:auto;
+  will-change:transform;
+  transform-origin:50% 50%;
+  transition:transform 0.15s linear;
+}
+
+/* subtle float animation when idle */
+@keyframes pfn-orb-float {
+  0% { transform:translateY(0) rotate(0deg); }
+  50% { transform:translateY(-4px) rotate(1deg); }
+  100% { transform:translateY(0) rotate(0deg); }
+}
+
+.pfn-copy {
+  margin-top:2.5rem;
+  font-size:0.75rem;
+  letter-spacing:0.18em;
+}
+
+/* Responsive */
+@media (max-width:900px) {
+  .pfn-footer-inner {
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "center";
+    row-gap:2rem;
+  }
+  .pfn-right {
+    text-align:left;
+  }
+  .pfn-logo-text {
+    font-size:14vw;
+  }
+  .pfn-logo-O {
+    width:14vw;
+  }
+  .pfn-socials {
+    position:static;
+    justify-content:flex-start;
+    margin-top:1.5rem;
+    margin-bottom:1rem;
+  }
+}

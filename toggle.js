@@ -827,3 +827,90 @@ animateHexBackground();
         // Also update on resize and initial load
         window.addEventListener('resize', () => updateBackgroundColor(), { passive: true });
         updateBackgroundColor();
+
+
+
+        (function () {
+    const PuffnodFooter = {
+      init() {
+        this.section = document.getElementById("puffnod-footer-section");
+        this.orb = document.getElementById("pfn-orb");
+        if (!this.section || !this.orb) return;
+
+        this.scrollRotation = 0;
+        this.mouseRotation = 0;
+        this.currentRotation = 0;
+
+        this.isHovering = false;
+        this.lastScrollY = window.scrollY;
+
+        this.bindEvents();
+        this.animate();
+      },
+
+      bindEvents() {
+        // scroll-based rotation
+        window.addEventListener("scroll", () => {
+          const rect = this.section.getBoundingClientRect();
+          const vh = window.innerHeight || document.documentElement.clientHeight;
+
+          // progress 0 (top of viewport) → 1 (bottom of viewport)
+          const visibleProgress = 1 - (rect.bottom / (vh + rect.height));
+          const clamped = Math.min(1, Math.max(0, visibleProgress));
+
+          // rotate up to 540deg while passing footer
+          this.scrollRotation = clamped * 540;
+        });
+
+        // mouse interaction when hovering on orb
+        this.orb.addEventListener("pointerenter", () => {
+          this.isHovering = true;
+          this.orb.style.animation = "none"; // stop idle float
+        });
+
+        this.orb.addEventListener("pointerleave", () => {
+          this.isHovering = false;
+          this.mouseRotation = 0;
+          this.orb.style.animation = "pfn-orb-float 5s ease-in-out infinite";
+        });
+
+        this.orb.addEventListener("pointermove", (e) => {
+          if (!this.isHovering) return;
+          const rect = this.orb.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = e.clientX - cx;
+          const dy = e.clientY - cy;
+
+          // angle relative to center
+          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+          this.mouseRotation = angle;
+        });
+
+        // small click spin
+        this.orb.addEventListener("click", () => {
+          this.scrollRotation += 120;
+        });
+      },
+
+      animate() {
+        const target = this.scrollRotation + this.mouseRotation;
+        // smooth interpolation
+        this.currentRotation += (target - this.currentRotation) * 0.08;
+
+        this.orb.style.transform =
+          "translateZ(0) rotate(" + this.currentRotation.toFixed(2) + "deg)";
+
+        requestAnimationFrame(this.animate.bind(this));
+      },
+    };
+
+    // initialize when DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () {
+        PuffnodFooter.init();
+      });
+    } else {
+      PuffnodFooter.init();
+    }
+  })();
