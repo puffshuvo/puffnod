@@ -695,17 +695,23 @@ animateHexBackground();
 
 
 
-     const projectsSection = document.getElementById('projectsSection');
+     // ====== PROJECTS SECTION COLOR CONFIGURATION ======
+        // Easily change these colors to customize the gradient animation
+        // Each stop has: from (left color), to (right color), textColor
+        const COLOR_CONFIG = [
+            { from: '#f5f7fa', to: '#e2cbc3', textColor: '#333' },
+            { from: '#380101', to: '#cab1e4', textColor: '#fdc6c6' },
+            { from: '#000000', to: '#434343', textColor: 'white' },
+            { from: '#FA8BFF', to: '#ffffff', textColor: '#1a1a1a' },
+            { from: '#ffecd2', to: '#fcb69f', textColor: '#333' }
+        ];
+        // =====================================================
+
+        const projectsSection = document.getElementById('projects');
         const projectItems = document.querySelectorAll('.project-item');
         
         // Define color stops as plain color pairs for interpolation
-        const colorStops = [
-            { from: '#f5f7fa', to: '#e2cbc3ff', textColor: '#333' },
-            { from: '#ea6666ff', to: '#764ba2', textColor: 'white' },
-            { from: '#000000', to: '#434343', textColor: 'white' },
-            { from: '#FA8BFF', to: '#2BD2FF', textColor: '#1a1a1a' },
-            { from: '#ffecd2', to: '#fcb69f', textColor: '#333' }
-        ];
+        const colorStops = COLOR_CONFIG;
 
         // Helper: convert hex -> {r,g,b}
         function hexToRgb(hex) {
@@ -770,46 +776,47 @@ animateHexBackground();
         // Smooth background color transition on scroll
         function updateBackgroundColor() {
             if (!projectsSection) return;
+            
             const sectionRect = projectsSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
-            // If section not in viewport, restore initial body backgroundColor and return
-            if (sectionRect.top >= windowHeight || sectionRect.bottom <= 0) {
-                if (document.body.style.backgroundColor !== _initialBodyBgColor) {
-                    document.body.style.backgroundColor = _initialBodyBgColor;
-                }
+            // Check if section is visible at all
+            if (sectionRect.bottom < 0 || sectionRect.top > windowHeight) {
+                // Restore initial body background when scrolled past section
+                document.body.style.backgroundColor = _initialBodyBgColor;
                 return;
             }
 
-            // Calculate scroll progress through the section (0 to 1)
-            const sectionHeight = Math.max(1, sectionRect.height);
+            // Calculate how far through the section we've scrolled
+            // 0 = just entering, 1 = fully scrolled through
+            const sectionHeight = sectionRect.height;
             const scrollProgress = Math.max(0, Math.min(1,
                 (windowHeight - sectionRect.top) / (sectionHeight + windowHeight)
             ));
 
-            // Compute continuous position across color stops for the section gradient
-            const totalStops = Math.max(1, colorStops.length - 1);
+            // Map progress across all color stops
+            const totalStops = colorStops.length - 1;
             const position = scrollProgress * totalStops;
-            const idx = Math.floor(position);
-            const t = Math.min(1, Math.max(0, position - idx));
+            const currentStopIdx = Math.floor(position);
+            const nextStopIdx = Math.min(currentStopIdx + 1, colorStops.length - 1);
+            const lerpFactor = position - currentStopIdx;
 
-            const fromStop = colorStops[Math.min(idx, colorStops.length - 1)];
-            const toStop = colorStops[Math.min(idx + 1, colorStops.length - 1)];
+            const currentStop = colorStops[currentStopIdx];
+            const nextStop = colorStops[nextStopIdx];
 
-            // Interpolate colors for the section gradient
-            const leftColor = interpHex(fromStop.from, toStop.from, t);
-            const rightColor = interpHex(fromStop.to, toStop.to, t);
-            projectsSection.style.background = `linear-gradient(135deg, ${leftColor} 0%, ${rightColor} 100%)`;
+            // Interpolate colors between stops
+            const gradientLeftColor = interpHex(currentStop.from, nextStop.from, lerpFactor);
+            const gradientRightColor = interpHex(currentStop.to, nextStop.to, lerpFactor);
+            
+            // Apply gradient to section
+            projectsSection.style.background = `linear-gradient(135deg, ${gradientLeftColor} 0%, ${gradientRightColor} 100%)`;
 
-            // For page-level feeling (white -> dark) compute a single body color
-            const startColor = colorStops[0].from;
-            const endColor = colorStops[Math.min(2, colorStops.length - 1)].from;
-            const bodyColor = interpHex(startColor, endColor, scrollProgress);
+            // Update text color smoothly
+            projectsSection.style.color = lerpFactor < 0.5 ? currentStop.textColor : nextStop.textColor;
+
+            // Update page background color
+            const bodyColor = interpHex(colorStops[0].from, colorStops[Math.min(2, colorStops.length - 1)].from, scrollProgress);
             document.body.style.backgroundColor = bodyColor;
-
-            // Text color for the section: choose nearer stop's textColor
-            projectsSection.style.color = t < 0.5 ? fromStop.textColor : toStop.textColor;
-            lastIndex = position;
         }
 
         // Use requestAnimationFrame for smooth updates
@@ -827,6 +834,44 @@ animateHexBackground();
         // Also update on resize and initial load
         window.addEventListener('resize', () => updateBackgroundColor(), { passive: true });
         updateBackgroundColor();
+
+        // ====== PROJECT ITEMS SCROLL ANIMATION ======
+        // Add smooth parallax and scale effects to project items while scrolling
+        function animateProjectItemsOnScroll() {
+            projectItems.forEach((item, index) => {
+                const itemRect = item.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculate visibility: 0 = below viewport, 0.5 = middle of viewport, 1 = above viewport
+                const elementCenter = itemRect.top + itemRect.height / 2;
+                const viewportCenter = windowHeight / 2;
+                const distance = Math.abs(elementCenter - viewportCenter);
+                const maxDistance = windowHeight;
+                const scrollProgress = Math.max(0, 1 - (distance / maxDistance));
+                
+                // Apply smooth scale effect (items grow slightly as they enter viewport)
+                const scale = 0.95 + (scrollProgress * 0.1); // scales from 0.95 to 1.05
+                
+                // Apply smooth opacity transition
+                const opacity = 0.7 + (scrollProgress * 0.3); // opacity from 0.7 to 1
+                
+                // Subtle parallax effect (items move slightly based on scroll)
+                const yOffset = (1 - scrollProgress) * 20; // -20px to 20px movement
+                
+                // Apply transformations
+                item.style.transform = `scale(${scale}) translateY(${yOffset}px)`;
+                item.style.opacity = opacity;
+            });
+        }
+
+        // Attach scroll listener for project item animations
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(animateProjectItemsOnScroll);
+        }, { passive: true });
+
+        // Initial call
+        animateProjectItemsOnScroll();
+        // ============================================
 
 
 

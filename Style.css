@@ -1701,9 +1701,10 @@
             gap: 60px;
             align-items: center;
             margin-bottom: 120px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            opacity: 0.7;
+            transform: scale(0.95) translateY(0);
+            transition: none;
+            will-change: transform, opacity;
         }
 
         .project-item.visible {
@@ -1749,7 +1750,7 @@
         .project-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(102, 126, 234, 0.4));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.4));
             opacity: 0;
             transition: opacity 0.4s ease;
             display: flex;
@@ -1780,10 +1781,10 @@
         }
 
         .view-project-btn:hover {
-            background: #01030d;
+            background: #ffffff;
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 25px rgba(51, 51, 51, 0.4);
         }
 
         .project-content {
@@ -1792,13 +1793,13 @@
 
         .project-title {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
+            font-weight: 200;
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
         .project-description {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 0.5vw, 1.2rem);
             line-height: 1.8;
             margin-bottom: 20px;
             opacity: 0.85;
