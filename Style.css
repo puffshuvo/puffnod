@@ -607,6 +607,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             nav {
                 padding: 1rem 1.5rem;
             }
@@ -617,26 +621,30 @@
             }
 
             .hero {
-                padding: 1rem;
+                padding: 1.5rem;
+                min-height: 85vh;
             }
 
             .cta-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
             }
 
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
+                padding: 0.9rem 2rem;
             }
 
             .hero-logo {
-                width: 150px;
+                width: 200px;
+                height: auto;
             }
 
             .logo-glow {
-                width: 180px;
-                height: 180px;
+                width: 200px;
+                height: 200px;
             }
             
         }
@@ -669,16 +677,72 @@
 
         @media (max-width: 768px) {
             .animated-logo-container {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
+                margin: 0 auto 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: floatLoadingSmooth 3.5s ease-in-out infinite;
+            }
+
+            @keyframes floatLoadingSmooth {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
             }
 
             .brand-name {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                margin-top: 2.5rem;
+                letter-spacing: 2px;
             }
 
             .loading-bar-container {
-                width: 150px;
+                width: 160px;
+                margin: 30px auto 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            body {
+                scroll-behavior: smooth;
+            }
+            
+            .animated-logo-container {
+                width: 140px;
+                height: 140px;
+                margin: 0 auto 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: floatLoadingSmoothSmall 3s ease-in-out infinite;
+            }
+
+            @keyframes floatLoadingSmoothSmall {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
+
+            .brand-name {
+                font-size: 1.6rem;
+                margin-top: 2rem;
+            }
+
+            .loading-bar-container {
+                width: 140px;
+                margin: 25px auto 0;
             }
         }
 
@@ -1470,6 +1534,10 @@
         }
 
         @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             .partner-logo-card {
                 width: 180px;
                 height: 180px;
@@ -1544,14 +1612,28 @@
 
         /* Responsive Design for Partner Section */
         @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             .partner-container {
                 flex-direction: column;
-                gap: 20px;
+                gap: 30px;
                 text-align: center;
+                padding: 40px 20px;
             }
 
             .partner-text h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 30px;
+            }
+            
+            .partner-logos {
+                order: 2;
+            }
+            
+            .partner-text {
+                order: 1;
             }
         }
 
@@ -1601,12 +1683,22 @@
         }
 
         @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             .main-heading h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
+                margin-bottom: 15px;
+            }
+            
+            .main-heading p {
+                font-size: 1rem;
             }
             
             .comparison-container {
                 height: 100vh;
+                min-height: 600px;
             }
             
             .before .content, .after .content {
@@ -1619,6 +1711,12 @@
             
             .labels {
                 padding: 0 20px;
+                bottom: 30px;
+            }
+
+            .fashion-section .container {
+                padding: 0 25px;
+                gap: 25px;
             }
 
             .fashion-section .tilt {
@@ -1632,25 +1730,36 @@
 
             .fashion-section .tshirt-details {
                 width: 200px;
+                bottom: 80px;
             }
 
             .about-container {
                 flex-direction: column;
-                gap: 20px;
+                gap: 35px;
                 text-align: center;
+                padding: 40px 25px;
             }
 
             .about-text h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+            
+            .about-text p {
+                font-size: 1rem;
+                margin-bottom: 20px;
             }
 
             .about-logo img {
-                width: 200px;
+                width: 240px;
+                height: 240px;
             }
 
             .scroll-down {
-                width: 40px;
-                height: 40px;
+                width: 44px;
+                height: 44px;
+                bottom: 30px;
+                right: 25px;
             }
 
             .scroll-down::after {
@@ -1659,11 +1768,31 @@
             }
         }
 
-      
-
-
-
-
+        
+        @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            @keyframes float-logo-mobile {
+                0%, 100% { 
+                    transform: translateY(0) rotate(0deg);
+                }
+                50% { 
+                    transform: translateY(-8px) rotate(0.5deg);
+                }
+            }
+            
+            .hero-logo {
+                animation: float-logo-mobile 4.5s ease-in-out infinite;
+                width: 280px;
+            }
+            
+            .logo-glow {
+                width: 180px;
+                height: 180px;
+            }
+        }
 
             .projects-section {
             min-height: 100vh;
@@ -1851,6 +1980,10 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             .project-item {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1867,31 +2000,66 @@
         }
 
         @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
             .projects-section {
-                padding: 60px 15px;
+                padding: 60px 20px;
             }
 
             .section-title {
-                margin-bottom: 40px;
+                margin-bottom: 45px;
+                font-size: clamp(2rem, 5vw, 2.5rem);
             }
 
             .project-item {
-                margin-bottom: 60px;
+                margin-bottom: 70px;
             }
 
             .project-content {
-                padding: 10px;
+                padding: 15px;
+            }
+            
+            .project-title {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            
+            .project-description {
+                font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             }
 
             .project-link {
                 width: 100%;
                 justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .project-image-container {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            body {
+                scroll-behavior: smooth;
+            }
+            
+            .projects-section {
+                padding: 50px 15px;
+            }
+            
             .project-image {
-                aspect-ratio: 3/2;
+                aspect-ratio: 4/3;
+            }
+            
+            .project-item {
+                margin-bottom: 50px;
+                gap: 20px;
             }
         }
 
@@ -2057,6 +2225,10 @@
 }
 
 @media (max-width:900px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   .pfn-socials {
     position:static;
     justify-content:flex-start;
@@ -2121,6 +2293,10 @@
 
 /* Responsive */
 @media (max-width:900px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   .pfn-footer-inner {
     grid-template-columns:1fr;
     grid-template-areas:
@@ -2143,5 +2319,258 @@
     justify-content:flex-start;
     margin-top:1.5rem;
     margin-bottom:1rem;
+  }
+}
+
+
+
+
+
+/* ============================================
+   Media Queries - Responsive Adjustments
+   ============================================ */
+
+/* Small phones (portrait) - ~320–480px */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+  }
+
+  .hero-content p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .scroll-indicator {
+    bottom: 2rem;
+  }
+
+  .main-heading h1 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+  
+  .main-heading p {
+    font-size: 0.95rem;
+  }
+
+  .fashion-section .tilt,
+  .fashion-section .tshirt {
+    width: 280px;
+    height: 280px;
+  }
+
+  .fashion-section .container {
+    padding: 0 20px;
+    gap: 20px;
+  }
+  
+  .fashion-section .text-box h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+  
+  .fashion-section .text-box p {
+    font-size: 0.95rem;
+  }
+
+  .project-image-container {
+    width: 100%;
+  }
+
+  .pfn-logo-text {
+    font-size: 16vw;
+  }
+
+  .pfn-logo-O {
+    width: 16vw;
+    max-width: 120px;
+  }
+  
+  .about-container {
+    padding: 30px 15px;
+    gap: 25px;
+  }
+  
+  .about-text h2 {
+    font-size: clamp(1.8rem, 5vw, 2rem);
+  }
+  
+  .about-logo img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Phones & small tablets (portrait) - ~480–768px */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 9vw, 4.8rem);
+  }
+
+  .comparison-container {
+    height: 100vh;
+  }
+
+  .main-heading h1 {
+    font-size: 2.5rem;
+  }
+
+  .before-content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .fashion-section .tilt,
+  .fashion-section .tshirt {
+    width: 300px;
+    height: 300px;
+  }
+
+  .fashion-section .tshirt-details {
+    width: 200px;
+  }
+
+  .fashion-section .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 0 30px;
+  }
+
+  .about-container,
+  .partner-container {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .about-text h2,
+  .partner-text h2 {
+    font-size: 2rem;
+  }
+
+  .about-logo img,
+  .partner-logo-card {
+    width: 220px;
+    height: 220px;
+  }
+
+  .project-item {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+
+  .project-item:nth-child(even) {
+    direction: ltr;
+  }
+
+  .scroll-down {
+    width: 44px;
+    height: 44px;
+  }
+
+  .scroll-down::after {
+    width: 14px;
+    height: 14px;
+  }
+
+  .pfn-footer-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "center";
+    row-gap: 2.5rem;
+  }
+
+  .pfn-logo-text {
+    font-size: 15vw;
+  }
+
+  .pfn-logo-O {
+    width: 15vw;
+  }
+}
+
+/* Tablets & small laptops — 768–1024px */
+@media (max-width: 1024px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .project-item {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .project-item:nth-child(even) {
+    direction: ltr;
+  }
+
+  .partner-logo-card {
+    width: 260px;
+    height: 260px;
+  }
+
+  .partner-logo-card .preview-image {
+    width: 160px;
+    height: 96px;
+  }
+}
+
+/* Large tablets / small desktops — 1024–1366px */
+@media (max-width: 1366px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .hero-title {
+    font-size: clamp(3.8rem, 7vw, 6.2rem);
+  }
+
+  .comparison-container {
+    height: 90vh;
+  }
+
+  .fashion-section .tilt,
+  .fashion-section .tshirt {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* Very large screens — 4K, ultra-wide etc. */
+@media (min-width: 1921px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .hero-title {
+    font-size: 8rem;
+  }
+
+  .fashion-section .tilt,
+  .fashion-section .tshirt {
+    width: 520px;
+    height: 520px;
+  }
+
+  .project-title {
+    font-size: 3.6rem;
+  }
+
+  .pfn-logo-text {
+    font-size: 8.5vw;
   }
 }
